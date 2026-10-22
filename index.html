@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102d32">
+<title>Simulado ISFS · Segurança da Informação</title>
+<style>
+:root{--ink:#17363b;--muted:#64777a;--teal:#087f72;--pale:#e7f4ef;--line:#dae4df;--paper:#fff;--bg:#f3f5f0;--red:#ad3434;--amber:#966214}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.4}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e29d32;outline-offset:4px}button{border:0}h1,h2,h3,p{margin-top:0}h1,h2,h3{line-height:1.2;letter-spacing:-.035em}h1{font-size:clamp(2.25rem,5vw,4rem)}h2{font-size:clamp(1.6rem,3vw,2.15rem)}h3{font-size:1.15rem}p{color:var(--muted)}.shell{max-width:1240px;margin:auto;padding:0 32px}.header{height:92px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:15px}.brand{display:flex;align-items:center;gap:12px;font-weight:750;line-height:1.2}.brand svg{width:39px;height:43px;color:var(--teal)}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:.15em;font-weight:600;margin-top:7px}.pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:650;letter-spacing:.02em;padding:6px 11px;border-radius:20px;background:var(--pale);color:var(--teal)}.dot{width:6px;height:6px;border-radius:50%;background:currentColor}.eyebrow{font-size:11px;letter-spacing:.17em;font-weight:750;text-transform:uppercase;color:var(--teal);margin-bottom:17px}.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:72px;align-items:center;padding:66px 0 45px}.intro h1{max-width:650px;margin-bottom:22px}.intro .lead{font-size:18px;max-width:520px}.accent{color:var(--teal)}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px}.exam-card{box-shadow:0 15px 45px #12383008}.exam-card h2{font-size:1.4rem}.stat-row{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);font-size:14px;gap:20px}.stat-row span{color:var(--muted)}.stat-row b{font-weight:650;text-align:right}.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;min-height:46px;padding:10px 20px;border-radius:9px;background:var(--teal);color:white;font-weight:650;font-size:14px;transition:background .15s}.btn:hover{background:#07695f}.btn.secondary{background:#fff;border:1px solid #c5d5cd;color:var(--ink)}.btn.secondary:hover{background:#edf4ef}.btn.danger{background:var(--red)}.btn.block{width:100%;margin-top:25px}.micro{font-size:12px;line-height:1.6;margin:14px 0 0}.feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;padding:26px 0 42px}.feature{padding-top:20px;border-top:1px solid var(--line)}.feature span{font-size:12px;color:var(--teal);font-weight:750}.feature h3{font-size:15px;margin:10px 0}.feature p{font-size:13px;max-width:300px;margin:0}.footer{border-top:1px solid var(--line);padding:21px 0 30px;font-size:11px;color:var(--muted)}.exam-heading{display:flex;justify-content:space-between;align-items:center;margin:30px 0 25px;gap:20px}.exam-heading h1{font-size:25px;margin:0}.exam-heading p{font-size:13px;margin:6px 0 0}.timer{background:var(--ink);border-radius:11px;color:white;padding:10px 21px;min-width:143px;text-align:center;font-variant-numeric:tabular-nums}.timer small{font-size:10px;letter-spacing:.1em;display:block;color:#c5dad5}.timer strong{font-size:25px;letter-spacing:.04em}.timer.warning{background:var(--red)}.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:24px;align-items:start;margin-bottom:40px}.question-card{padding:34px}.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;gap:10px}.q-meta .eyebrow{margin:0}.text-btn{background:none;padding:7px 0;color:var(--muted);font-size:12px}.text-btn.flagged{color:var(--amber);font-weight:700}.question-card h2{font-size:22px;line-height:1.55;letter-spacing:-.02em;margin-bottom:27px;white-space:pre-line}.choices{display:grid;gap:12px}.choice{display:flex;align-items:flex-start;gap:14px;padding:16px;border:1px solid var(--line);border-radius:10px;cursor:pointer;transition:all .15s}.choice:hover{background:#f7faf7;border-color:#99bdb0}.choice.selected{border-color:var(--teal);background:#eef8f2;box-shadow:0 0 0 1px var(--teal)}.choice input{position:absolute;opacity:0;width:1px;height:1px}.choice:has(input:focus-visible){outline:3px solid #e29d32;outline-offset:3px}.letter{display:flex;flex-shrink:0;align-items:center;justify-content:center;width:29px;height:29px;border:1px solid var(--line);border-radius:6px;font-size:12px;font-weight:700;color:var(--muted)}.selected .letter{background:var(--teal);border-color:var(--teal);color:white}.choice-text{font-size:14px;padding-top:2px}.q-nav{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:29px;padding-top:23px;gap:12px}.sidebar{padding:23px}.sidebar h3{font-size:15px;margin-bottom:5px}.sidebar p{font-size:12px}.progress{height:5px;background:#e9efea;border-radius:8px;overflow:hidden;margin:18px 0}.progress>div{height:100%;background:var(--teal);transition:width .2s}.question-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.q-dot{height:34px;border-radius:6px;background:#f2f5f1;border:1px solid transparent;color:var(--muted);font-size:12px;position:relative}.q-dot.answered{background:#dcefe5;color:#146449;font-weight:700}.q-dot.active{border:2px solid var(--teal);color:var(--teal)}.q-dot.flag:after{content:"";position:absolute;right:3px;top:3px;width:5px;height:5px;background:#bf821f;border-radius:50%}.legend{display:flex;gap:11px;flex-wrap:wrap;font-size:10px;color:var(--muted);margin:17px 0}.legend i{display:inline-block;width:7px;height:7px;border-radius:2px;background:#dcefe5;margin-right:4px}.legend i.flag{background:#bf821f}.legend i.blank{background:#e7eae6}.save-note{font-size:11px;color:var(--muted);text-align:center;margin:12px 0 0}.notice{padding:13px 16px;border-radius:9px;background:#fff3db;color:#72521b;font-size:13px;margin-bottom:20px}.result-hero{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;padding:35px;margin-top:35px;border-top:4px solid var(--teal)}.result-hero.failed{border-top-color:var(--red)}.result-hero h1{font-size:34px;margin:15px 0}.result-hero p{max-width:650px;margin-bottom:0}.score-circle{width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--teal) var(--pct),#e6eee8 0);display:grid;place-items:center}.score-inner{width:126px;height:126px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column}.score-inner b{font-size:32px;line-height:1.2}.score-inner small{color:var(--muted);font-size:12px}.result-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:20px 0}.result-stat{padding:20px}.result-stat span{font-size:12px;color:var(--muted);display:block}.result-stat strong{font-size:23px}.topic-card{margin-bottom:34px}.topic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 35px}.topic-label{display:flex;justify-content:space-between;font-size:13px;gap:10px}.topic .progress{margin:9px 0 0}.review-head{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:30px 0 17px}.review-head h2{margin:0}.filters{display:flex;gap:6px;flex-wrap:wrap}.filter{padding:8px 13px;border-radius:7px;background:#e7ede7;color:var(--muted);font-size:12px}.filter.on{background:var(--ink);color:white}.review-card{margin-bottom:18px;padding:25px}.review-card h3{font-size:17px;line-height:1.6;white-space:pre-line;margin-bottom:20px}.review-status{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;color:var(--red)}.review-status.correct{color:var(--teal)}.review-option{padding:11px 14px;border:1px solid var(--line);border-radius:8px;margin:7px 0;font-size:13px}.review-option.good{background:#edf7f0;border-color:#b6d6bf}.review-option.bad{background:#fff1ef;border-color:#e9bfba}.review-option small{display:block;color:var(--muted);margin:5px 0 0;line-height:1.6}.option-tag{font-size:10px;font-weight:750;margin-left:8px;color:var(--teal)}.bad .option-tag{color:var(--red)}.explanation{margin-top:17px;border-left:3px solid var(--teal);padding:2px 0 2px 14px;font-size:13px;color:var(--muted)}.explanation b{display:block;color:var(--ink);margin-bottom:5px}.result-actions{display:flex;justify-content:flex-end;gap:10px;margin:25px 0}dialog{max-width:470px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:16px;padding:30px;color:var(--ink);box-shadow:0 25px 70px #12383035}dialog::backdrop{background:#102d3270}dialog h2{font-size:24px}dialog p{font-size:14px}.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[hidden]{display:none!important}@media(max-width:850px){.intro{gap:30px}.exam-layout{grid-template-columns:1fr 235px}.sidebar{padding:18px}.question-card{padding:25px}.question-grid{gap:5px}.intro h1{font-size:43px}}@media(max-width:650px){.shell{padding:0 18px}.header{height:78px}.header>.pill{font-size:10px}.brand{font-size:14px}.brand small{font-size:9px}.brand svg{width:30px}.intro{grid-template-columns:1fr;padding-top:35px;gap:22px}.intro h1{font-size:39px}.intro .lead{font-size:16px}.card{padding:23px}.feature-row{grid-template-columns:1fr;gap:5px}.feature{padding:16px 0}.feature p{max-width:none}.exam-layout{grid-template-columns:1fr}.sidebar{order:2}.question-grid{grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}.exam-layout>*{min-width:0}.q-dot{padding:0}.q-dot{height:32px}.exam-heading h1{font-size:20px}.timer{min-width:115px;padding:8px 13px}.timer strong{font-size:22px}.question-card h2{font-size:19px}.q-meta{align-items:flex-start}.q-meta .eyebrow{font-size:10px;max-width:65%}.choice{padding:13px}.result-hero{grid-template-columns:1fr;text-align:center;padding:25px}.score-circle{margin:auto;grid-row:1}.result-hero h1{font-size:29px}.result-stats{grid-template-columns:repeat(2,1fr);gap:10px}.topic-grid{grid-template-columns:1fr}.review-head{align-items:flex-start}.result-actions{justify-content:stretch}.result-actions button{flex:1}.q-nav .btn{padding:10px 15px}.dialog-actions{flex-wrap:wrap}}@media print{body{background:white;font-size:12px}.header,.footer,.result-actions,.filters{display:none}.shell{max-width:none;padding:0}.card{box-shadow:none;break-inside:avoid}.result-hero{margin-top:0}.review-card{break-inside:avoid}.score-circle{print-color-adjust:exact}.result-stats{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="header"><div class="brand"><svg viewBox="0 0 40 44" fill="none" aria-hidden="true"><path d="M20 3 36 9v12c0 10-8 16-16 20C12 37 4 31 4 21V9L20 3Z" stroke="currentColor" stroke-width="2"/><path d="m13 22 5 5 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div>ISFS <span style="font-weight:400">/ Simulado</span><small>SEGURANÇA DA INFORMAÇÃO</small></div></div><span class="pill"><span class="dot"></span>Treino independente</span></header>
+<main id="app"></main>
+<footer class="footer">Material independente de estudo, sem vínculo com a EXIN. Questões inéditas inspiradas nos temas e no nível do simulado ISFS, edição 202404. EXIN® é marca de seu titular. O resultado usa o critério do anexo e não garante aprovação na certificação.</footer>
+</div>
+<dialog id="confirmDialog" aria-labelledby="dialogTitle"><h2 id="dialogTitle"></h2><p id="dialogText"></p><div class="dialog-actions"><button class="btn secondary" id="cancelDialog">Voltar</button><button class="btn" id="acceptDialog">Confirmar</button></div></dialog>
+<div id="announcer" class="sr-only" aria-live="polite"></div>
+<script id="question-data" type="application/json">[
+  {
+    "topic": "Fundamentos da informação",
+    "text": "Uma rede de lojas registra milhares de vendas. A gerente recebe um relatório que relaciona as vendas por região e identifica onde as metas não foram atingidas.\nO que transforma esses registros em informação para a gerente?",
+    "options": [
+      "O significado dos registros no contexto de uma decisão.",
+      "O simples fato de estarem armazenados em um computador.",
+      "A quantidade de registros ser superior a mil.",
+      "A ausência de dados numéricos no relatório."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. O contexto atribui significado aos dados e os torna úteis ao destinatário.",
+      "O meio de armazenamento não determina se os dados têm significado.",
+      "O volume não é o critério que diferencia dados de informação.",
+      "Informações podem incluir números; não precisam ser apenas texto."
+    ],
+    "lesson": "Dados são registros ou fatos. Informação surge quando esses dados têm significado em um contexto."
+  },
+  {
+    "topic": "Fundamentos da informação",
+    "text": "Qual atividade expressa melhor o propósito do gerenciamento da informação?",
+    "options": [
+      "Identificar e aproveitar o valor da informação para o negócio.",
+      "Assegurar exclusivamente que os sistemas de TI permaneçam disponíveis.",
+      "Concentrar a gestão na movimentação física dos documentos.",
+      "Restringir toda informação ao menor grupo de pessoas possível."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. O foco é apoiar as atividades e decisões do negócio por meio do valor da informação.",
+      "Disponibilidade é um objetivo de segurança importante, mas não expressa todo o propósito do gerenciamento da informação.",
+      "O fluxo de documentos é apenas parte da gestão, que inclui significado, valor e uso.",
+      "Restrições devem corresponder às necessidades do negócio; restringir indiscriminadamente prejudica o uso da informação."
+    ],
+    "lesson": "Gerenciar informação envolve seu valor e uso para o negócio, além dos recursos que a armazenam."
+  },
+  {
+    "topic": "Fundamentos da informação",
+    "text": "Um prestador de serviços encontra uma planilha de salários em uma pasta compartilhada aberta a toda a empresa. Ele consegue lê-la, mas não alterá-la.\nQual aspecto foi diretamente comprometido?",
+    "options": [
+      "Confidencialidade.",
+      "Integridade.",
+      "Disponibilidade.",
+      "Redundância."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A informação foi disponibilizada a alguém sem autorização para conhecê-la.",
+      "Não há indicação de alteração dos dados neste cenário.",
+      "A informação está acessível; não ocorreu indisponibilidade no cenário.",
+      "Redundância é uma forma de proteção, não o aspecto afetado pelo acesso indevido."
+    ],
+    "lesson": "Confidencialidade limita o acesso à informação às pessoas autorizadas."
+  },
+  {
+    "topic": "Fundamentos da informação",
+    "text": "Uma falha em um programa altera os valores de vários pedidos de compra, sem impedir o acesso ao sistema.\nQual aspecto da segurança da informação é mais diretamente afetado?",
+    "options": [
+      "Integridade.",
+      "Disponibilidade.",
+      "Confidencialidade.",
+      "Autenticidade do fornecedor."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A exatidão dos valores foi comprometida por alterações indevidas.",
+      "O enunciado informa que o sistema continua acessível.",
+      "Não foi descrita divulgação dos pedidos a pessoas não autorizadas.",
+      "O problema trata dos valores dos pedidos, não da identidade do fornecedor."
+    ],
+    "lesson": "Integridade protege a exatidão e a completude da informação e de seu processamento."
+  },
+  {
+    "topic": "Fundamentos da informação",
+    "text": "Os dados de uma clínica permanecem corretos e protegidos contra leitura indevida, mas uma pane impede os médicos autorizados de consultá-los.\nQual aspecto precisa ser restabelecido?",
+    "options": [
+      "Disponibilidade.",
+      "Confidencialidade.",
+      "Classificação.",
+      "Não repúdio."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Usuários autorizados precisam conseguir acessar os dados quando necessário.",
+      "O cenário diz que os dados continuam protegidos contra leitura indevida.",
+      "Classificação orienta a proteção conforme a sensibilidade, mas não restabelece o acesso por si só.",
+      "Não repúdio diz respeito à possibilidade de comprovar uma ação, não à acessibilidade dos dados."
+    ],
+    "lesson": "Disponibilidade é o acesso e uso da informação por quem tem autorização, quando necessário."
+  },
+  {
+    "topic": "Riscos e tratamento",
+    "text": "Uma empresa compara duas falhas possíveis em seu serviço de entrega.\nQuais fatores deve considerar para estimar o nível de risco de cada uma?",
+    "options": [
+      "A probabilidade de ocorrência e as consequências para o negócio.",
+      "Apenas o número de computadores envolvidos.",
+      "Somente o custo do controle de segurança disponível.",
+      "Exclusivamente a popularidade de cada ameaça na imprensa."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A combinação entre probabilidade e consequências fundamenta a estimativa de risco.",
+      "A quantidade de equipamentos, isoladamente, não define probabilidade nem impacto.",
+      "O custo de proteção ajuda a avaliar tratamentos, mas não determina sozinho o risco.",
+      "A repercussão de uma ameaça não demonstra sua relevância para aquele negócio."
+    ],
+    "lesson": "Risco é avaliado considerando o que pode acontecer, a chance de acontecer e suas consequências."
+  },
+  {
+    "topic": "Riscos e tratamento",
+    "text": "Um portal exposto à internet continua usando um componente com uma falha de segurança conhecida, para a qual já existe correção.\nComo se classifica essa fraqueza do portal?",
+    "options": [
+      "Vulnerabilidade.",
+      "Ameaça.",
+      "Impacto.",
+      "Controle."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A falha não corrigida é uma fraqueza que pode ser explorada.",
+      "A ameaça é uma causa potencial de incidente, como um atacante que explora a falha.",
+      "Impacto é a consequência, como perda de dados ou interrupção do serviço.",
+      "Controle é uma medida de proteção; a instalação da correção seria um exemplo."
+    ],
+    "lesson": "Diferencie vulnerabilidade (fraqueza), ameaça (causa potencial), incidente (evento ocorrido) e impacto (consequência)."
+  },
+  {
+    "topic": "Riscos e tratamento",
+    "text": "Qual situação representa uma ameaça de origem humana, ainda que sem intenção de causar dano?",
+    "options": [
+      "Um funcionário envia um arquivo sigiloso ao destinatário errado.",
+      "Uma tempestade interrompe o fornecimento de energia.",
+      "Um terremoto danifica um centro de dados.",
+      "Um raio atinge a rede elétrica do prédio."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Um erro humano pode provocar um incidente mesmo sem intenção maliciosa.",
+      "A tempestade é uma fonte natural de ameaça.",
+      "O terremoto é uma ameaça de origem natural.",
+      "O raio é um evento natural, não uma ação humana."
+    ],
+    "lesson": "Ameaças humanas incluem tanto ações deliberadas quanto erros e negligência."
+  },
+  {
+    "topic": "Riscos e tratamento",
+    "text": "Uma empresa elimina um serviço opcional porque não quer continuar exposta aos riscos associados à sua operação.\nQue forma de tratamento de risco está sendo adotada?",
+    "options": [
+      "Evitar o risco.",
+      "Aceitar o risco.",
+      "Compartilhar o risco.",
+      "Reduzir o risco mantendo a atividade."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A organização deixa de executar a atividade que gera aquela exposição.",
+      "Aceitar seria manter a exposição por decisão consciente.",
+      "Compartilhar envolveria outra parte, por exemplo por meio de seguro ou acordo.",
+      "Reduzir mantendo a atividade envolveria controles para diminuir probabilidade ou consequências."
+    ],
+    "lesson": "Evitar é deixar de realizar a atividade geradora do risco; reduzir é continuar com proteção adicional."
+  },
+  {
+    "topic": "Riscos e tratamento",
+    "text": "Após avaliar um risco pequeno, o responsável autorizado decide mantê-lo, pois o custo de um controle adicional seria desproporcional ao benefício. A decisão é documentada.\nQual tratamento foi escolhido?",
+    "options": [
+      "Aceitação do risco.",
+      "Eliminação da ameaça.",
+      "Transferência integral de responsabilidade.",
+      "Prevenção obrigatória do incidente."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A organização decide conscientemente reter o risco dentro de seus critérios.",
+      "Não foi eliminada a causa potencial do incidente.",
+      "Nenhuma outra parte assumiu obrigações no cenário.",
+      "A decisão foi não implementar proteção adicional, e não impedir obrigatoriamente o incidente."
+    ],
+    "lesson": "Aceitar um risco exige decisão consciente e autorização adequada; não significa desconhecê-lo."
+  },
+  {
+    "topic": "Riscos e tratamento",
+    "text": "Qual atividade pertence ao tratamento de riscos, em vez de ser apenas uma atividade de identificação ou análise?",
+    "options": [
+      "Implantar autenticação multifator para reduzir um risco de acesso indevido.",
+      "Identificar os ativos que sustentam um processo.",
+      "Estimar as consequências de uma indisponibilidade.",
+      "Identificar ameaças capazes de explorar uma fraqueza."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Implantar um controle é executar uma ação de tratamento.",
+      "Identificar ativos ajuda a compreender o que precisa ser protegido.",
+      "Estimar consequências faz parte da análise do risco.",
+      "Identificar ameaças ajuda a descrever e analisar o risco antes de tratá-lo."
+    ],
+    "lesson": "A análise fundamenta a decisão; o tratamento seleciona e implementa ações em resposta aos riscos."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Uma empresa está criando sua política de segurança da informação.\nQual deve ser a principal finalidade desse documento?",
+    "options": [
+      "Estabelecer direção e apoio da organização à segurança da informação.",
+      "Listar cada comando utilizado na configuração dos equipamentos.",
+      "Substituir todos os contratos com fornecedores.",
+      "Registrar exclusivamente os incidentes ocorridos no último mês."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A política expressa orientação, princípios e compromisso organizacional.",
+      "Comandos detalhados pertencem a instruções técnicas ou procedimentos.",
+      "Contratos têm função própria e não são substituídos pela política.",
+      "Registros de incidentes não são a finalidade de uma política."
+    ],
+    "lesson": "A política orienta; procedimentos e instruções detalham como executar as atividades."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Quem normalmente lidera a tradução da estratégia de negócios em uma estratégia de segurança da informação, articulando-a com a direção?",
+    "options": [
+      "Chief Information Security Officer (CISO).",
+      "Administrador da rede responsável pela configuração dos equipamentos.",
+      "Auditor externo que avalia o sistema de gestão.",
+      "Operador responsável pelas cópias de segurança."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. O CISO exerce uma função estratégica de alinhamento da segurança ao negócio.",
+      "O administrador atua na operação técnica, sem assumir necessariamente a liderança estratégica.",
+      "O auditor avalia de modo independente; não deve assumir a gestão que irá avaliar.",
+      "Operar backups é uma atribuição operacional, não a liderança da estratégia de segurança."
+    ],
+    "lesson": "Associe o CISO ao alinhamento estratégico da segurança, com apoio e responsabilidade da direção."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Uma empresa entrega ao mesmo funcionário a possibilidade de cadastrar um fornecedor e aprovar pagamentos para ele.\nQual mudança reduz melhor a oportunidade de fraude nesse processo?",
+    "options": [
+      "Separar o cadastro e a aprovação entre pessoas com atribuições distintas.",
+      "Solicitar que o funcionário use uma senha maior, mantendo todas as permissões.",
+      "Ocultar o nome dos fornecedores na tela inicial.",
+      "Permitir pagamentos sem registro para acelerar o trabalho."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A segregação de funções dificulta que uma única pessoa execute e oculte uma fraude.",
+      "Uma senha maior não resolve o conflito de atribuições do usuário autorizado.",
+      "Ocultar nomes na tela inicial não impede o abuso das permissões.",
+      "A ausência de registro prejudica a rastreabilidade e aumenta o risco."
+    ],
+    "lesson": "Segregação de funções distribui etapas críticas para reduzir erros, fraudes e alterações indevidas."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Uma organização define níveis como “público”, “interno” e “confidencial” para seus documentos.\nQual é o objetivo principal dessa classificação?",
+    "options": [
+      "Aplicar proteção compatível com a sensibilidade e a importância da informação.",
+      "Garantir que todo documento receba a mesma proteção, independentemente do conteúdo.",
+      "Dispensar controles de acesso para documentos internos.",
+      "Transformar automaticamente todos os documentos em dados pessoais."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A classificação orienta requisitos de acesso, armazenamento, transmissão e descarte.",
+      "A classificação permite diferenciar a proteção conforme a necessidade.",
+      "Informação interna também pode precisar de acesso restrito.",
+      "O conteúdo é que determina se há dados pessoais, não o rótulo aplicado."
+    ],
+    "lesson": "Classificar estabelece o nível de proteção necessário; rotular torna essa classificação reconhecível."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Uma empresa contratará um provedor para armazenar documentos confidenciais.\nQual medida estabelece melhor as obrigações de segurança do provedor?",
+    "options": [
+      "Formalizar requisitos de segurança e responsabilidades no acordo com o fornecedor.",
+      "Presumir que qualquer provedor adota automaticamente as mesmas regras do cliente.",
+      "Entregar todas as credenciais administrativas aos funcionários do provedor.",
+      "Dispensar o acompanhamento do serviço depois de assinado o contrato."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Requisitos explícitos permitem estabelecer e acompanhar obrigações das partes.",
+      "Suposições não substituem requisitos claros e acordados.",
+      "Credenciais devem respeitar necessidade de acesso e privilégio mínimo.",
+      "Acompanhamento continua necessário para verificar o atendimento aos requisitos."
+    ],
+    "lesson": "Terceirizar uma atividade exige definir requisitos e acompanhar o fornecedor; o contrato não dispensa gestão."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Qual documento interno é o local mais apropriado para comunicar regras de uso aceitável do e-mail e dos recursos da empresa aos funcionários?",
+    "options": [
+      "Código de conduta ou política de uso aceitável.",
+      "Acordo de não divulgação (NDA).",
+      "Plano de recuperação de desastres.",
+      "Política de classificação da informação."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Esses documentos comunicam comportamentos permitidos e proibidos no uso dos recursos.",
+      "Um NDA estabelece obrigações de sigilo, mas não é o documento mais adequado para regras gerais de uso do e-mail.",
+      "O plano de recuperação orienta o restabelecimento de recursos após interrupções.",
+      "A classificação orienta níveis de proteção e não substitui regras de uso aceitável."
+    ],
+    "lesson": "Regras de comportamento e uso aceitável precisam ser comunicadas de forma clara aos usuários."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Uma empresa deseja diminuir erros frequentes no compartilhamento de arquivos.\nQual abordagem de conscientização é mais adequada?",
+    "options": [
+      "Criar um programa contínuo com exemplos e orientações adaptados ao trabalho das equipes.",
+      "Aplicar um treinamento técnico avançado apenas aos administradores de rede.",
+      "Enviar um manual completo na admissão e dispensar ações posteriores.",
+      "Adotar um curso genérico anual, sem relacioná-lo aos incidentes e processos internos."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Conteúdo contextualizado e reforço contínuo ajudam a transformar o comportamento.",
+      "Os riscos de compartilhamento envolvem todos os usuários, não apenas administradores.",
+      "Uma comunicação inicial sem reforço pode não sustentar a mudança de comportamento.",
+      "Um curso genérico pode ajudar, mas a adequação aos riscos e às necessidades reais torna o programa mais eficaz."
+    ],
+    "lesson": "Conscientização é mais eficaz quando é contínua, relevante e adequada ao público e aos riscos da organização."
+  },
+  {
+    "topic": "Governança e organização",
+    "text": "Uma empresa usa contas individuais e mantém registros protegidos das ações realizadas em um sistema.\nQual benefício esses controles proporcionam principalmente?",
+    "options": [
+      "Permitir relacionar ações aos seus responsáveis e oferecer evidências para avaliação.",
+      "Comprovar que todas as ações registradas foram previamente autorizadas.",
+      "Impedir automaticamente qualquer alteração incorreta de dados.",
+      "Garantir que os dados estejam sempre disponíveis durante uma pane."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Identificação individual e registros apoiam a responsabilização e a auditabilidade.",
+      "Um registro mostra a ação realizada, mas não comprova sozinho que ela era autorizada.",
+      "Registrar ações não impede, por si só, alterações indevidas.",
+      "Disponibilidade durante panes depende de outros controles, como redundância e recuperação."
+    ],
+    "lesson": "Contas individuais e trilhas de auditoria apoiam a identificação de quem realizou cada ação."
+  },
+  {
+    "topic": "Incidentes e continuidade",
+    "text": "Um funcionário identifica uma possível exposição de documentos internos. O procedimento da empresa orienta o relato inicial ao service desk.\nQual deve ser sua primeira ação?",
+    "options": [
+      "Relatar o ocorrido ao service desk, seguindo o procedimento definido.",
+      "Esperar que outro funcionário confirme o problema antes de comunicar.",
+      "Publicar os documentos em uma rede social para alertar a empresa.",
+      "Apagar por conta própria todos os registros relacionados ao caso."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. O canal definido permite registrar, avaliar e encaminhar o incidente adequadamente.",
+      "Esperar pode ampliar o impacto e retardar a resposta.",
+      "Divulgar os documentos pode agravar a exposição.",
+      "Apagar registros pode destruir evidências importantes para a investigação."
+    ],
+    "lesson": "Relate suspeitas de incidente pelo canal previsto e preserve as evidências; não improvise ações destrutivas."
+  },
+  {
+    "topic": "Incidentes e continuidade",
+    "text": "Um analista registra horário, descrição e possíveis consequências de um incidente relatado por telefone. Ele esquece de anotar quem fez o relato.\nPor que esse dado deve ser incluído?",
+    "options": [
+      "Para permitir esclarecimentos e acompanhamento com a pessoa que percebeu o evento.",
+      "Para definir automaticamente a culpa de quem relatou.",
+      "Para substituir a descrição técnica do incidente.",
+      "Para dispensar o registro da data e da hora."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A identificação e o contato de quem relata ajudam a validar e complementar as informações.",
+      "Relatar um incidente não significa ser seu causador.",
+      "A descrição do incidente continua necessária.",
+      "Data, hora e identificação do relator são informações complementares."
+    ],
+    "lesson": "Um registro útil de incidente inclui o que ocorreu, quando ocorreu, possíveis impactos e quem o notificou."
+  },
+  {
+    "topic": "Incidentes e continuidade",
+    "text": "Um princípio de incêndio já foi detectado. Um funcionário treinado utiliza um extintor para impedir que o fogo se espalhe.\nQual é a função desse controle no cenário?",
+    "options": [
+      "Repressiva, pois limita o incidente em andamento.",
+      "Preventiva, pois impede que o incêndio tenha início.",
+      "De aceitação, pois mantém o risco sem intervenção.",
+      "De recuperação, pois reconstrói o ambiente após o incêndio."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A extinção limita a evolução de um evento que já começou.",
+      "O fogo já teve início; a ação descrita não está evitando sua ocorrência inicial.",
+      "Há intervenção ativa para conter o incidente.",
+      "Apagar o fogo não é a mesma atividade que restaurar instalações e serviços."
+    ],
+    "lesson": "No vocabulário do anexo, um controle repressivo atua sobre o incidente em curso para limitar danos."
+  },
+  {
+    "topic": "Incidentes e continuidade",
+    "text": "Após uma enchente interditar um escritório, a equipe passa a atender clientes em um local alternativo previamente preparado.\nQual é a principal finalidade dessa medida?",
+    "options": [
+      "Manter as atividades essenciais enquanto o local principal está indisponível.",
+      "Demonstrar que não há mais necessidade de analisar riscos.",
+      "Eliminar a necessidade de restaurar os serviços afetados.",
+      "Garantir que as causas da enchente foram removidas."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. O local alternativo permite continuidade durante a interrupção.",
+      "Análise de riscos continua necessária antes e depois de incidentes.",
+      "Serviços e instalações ainda podem precisar de recuperação.",
+      "Transferir a operação não remove a causa da enchente."
+    ],
+    "lesson": "Continuidade mantém atividades essenciais durante uma interrupção; recuperação restabelece recursos e serviços afetados."
+  },
+  {
+    "topic": "Incidentes e continuidade",
+    "text": "Uma empresa possui cópias de segurança, mas nunca tentou restaurá-las.\nQual ação oferece melhor evidência de que elas ajudarão na recuperação?",
+    "options": [
+      "Executar testes periódicos de restauração e verificar os dados recuperados.",
+      "Conferir apenas se os arquivos de backup têm nomes longos.",
+      "Guardar todas as cópias ao lado do único servidor de produção.",
+      "Presumir que a existência de uma rotina agendada garante a recuperação."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Testes verificam se as cópias podem realmente ser utilizadas para restaurar dados e serviços.",
+      "O nome dos arquivos não comprova que os dados são recuperáveis.",
+      "Guardar tudo junto expõe produção e backup ao mesmo evento físico.",
+      "Uma tarefa agendada pode falhar ou produzir cópias inutilizáveis."
+    ],
+    "lesson": "Fazer backup é apenas parte da proteção: é preciso proteger as cópias e testar a restauração."
+  },
+  {
+    "topic": "Segurança física",
+    "text": "Qual medida é um controle físico voltado a impedir a entrada de pessoas não autorizadas em uma sala de arquivos?",
+    "options": [
+      "Instalar uma porta resistente com fechadura e controle de entrada.",
+      "Ativar uma regra de filtragem no firewall.",
+      "Exigir senha para abrir uma planilha.",
+      "Criptografar as mensagens de e-mail."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A porta e a fechadura atuam no acesso físico ao ambiente.",
+      "O firewall é um controle tecnológico de tráfego de rede.",
+      "A senha restringe acesso lógico ao arquivo, não entrada física na sala.",
+      "Criptografia de e-mail protege comunicações, não a entrada de pessoas."
+    ],
+    "lesson": "Controles físicos protegem instalações e equipamentos; controles lógicos protegem acessos a sistemas e dados."
+  },
+  {
+    "topic": "Segurança física",
+    "text": "Uma sala de servidores tem um nobreak com autonomia de 20 minutos, sem outra fonte de energia.\nQual risco permanece se o fornecimento externo cair por duas horas?",
+    "options": [
+      "Os equipamentos podem desligar quando a autonomia das baterias se esgotar.",
+      "Os dados serão necessariamente divulgados a pessoas sem autorização.",
+      "O nobreak manterá o serviço durante duas horas por estabilizar a tensão.",
+      "Os equipamentos ficarão disponíveis, mas os dados serão necessariamente alterados."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A proteção está limitada à autonomia das baterias, salvo outra fonte de energia.",
+      "Interrupção elétrica não implica, por si só, divulgação de dados.",
+      "Estabilização não amplia a autonomia declarada de 20 minutos para duas horas.",
+      "Não há garantia de disponibilidade nem motivo para concluir que os dados necessariamente serão alterados."
+    ],
+    "lesson": "Proteção de energia precisa corresponder à duração das interrupções previstas e às necessidades do negócio."
+  },
+  {
+    "topic": "Segurança física",
+    "text": "Por que o controle ambiental é importante em uma sala de servidores?",
+    "options": [
+      "Para manter temperatura e umidade adequadas ao funcionamento dos equipamentos.",
+      "Para garantir a confidencialidade dos arquivos armazenados nos servidores.",
+      "Para substituir a redundância dos sistemas de processamento.",
+      "Para evitar exclusivamente o desconforto das pessoas que trabalham no prédio."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Condições ambientais inadequadas podem provocar falhas e interrupções.",
+      "Controle ambiental não restringe diretamente a leitura dos dados por pessoas não autorizadas.",
+      "Um ambiente adequado reduz certas falhas, mas não substitui recursos redundantes.",
+      "O foco da sala de servidores é a proteção dos equipamentos, não apenas o conforto humano."
+    ],
+    "lesson": "Ambiente físico inclui temperatura, umidade, energia e proteção contra eventos que afetem os equipamentos."
+  },
+  {
+    "topic": "Segurança física",
+    "text": "Uma organização instala proteção no perímetro, controla a entrada do prédio e restringe separadamente a sala de servidores.\nQue princípio essa abordagem exemplifica?",
+    "options": [
+      "Proteção em camadas, com barreiras sucessivas.",
+      "Eliminação de todos os riscos por uma única barreira.",
+      "Substituição da segurança física por segurança de rede.",
+      "Concessão do mesmo acesso a qualquer pessoa que entre no prédio."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. As barreiras sucessivas protegem áreas com diferentes graus de sensibilidade.",
+      "Não há garantia de eliminação de todos os riscos, nem se trata de uma única barreira.",
+      "O cenário apresenta controles físicos em diferentes áreas.",
+      "Entrar no prédio não deve dar automaticamente acesso às áreas mais sensíveis."
+    ],
+    "lesson": "Camadas de proteção dificultam que a falha de uma única barreira permita acesso direto ao ativo crítico."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Um notebook que contém documentos confidenciais é perdido durante uma viagem.\nQual controle previamente implantado protege mais diretamente a confidencialidade dos dados armazenados?",
+    "options": [
+      "Criptografia do disco, com proteção adequada das chaves.",
+      "Um adesivo com o nome da empresa na tampa.",
+      "Uma cópia de segurança armazenada em outro local.",
+      "Uma bateria de maior capacidade."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A criptografia torna os dados ilegíveis sem a chave necessária, quando corretamente implementada.",
+      "Identificação visual não impede leitura dos dados.",
+      "O backup ajuda na recuperação dos dados, mas não impede a leitura da cópia perdida.",
+      "Autonomia da bateria não protege os documentos contra acesso indevido."
+    ],
+    "lesson": "Criptografia protege o conteúdo; backup protege a capacidade de recuperá-lo. As funções são diferentes."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Funcionários precisam acessar sistemas internos de casa por meio da internet.\nQual medida é mais diretamente adequada para proteger o canal de conexão remota?",
+    "options": [
+      "Usar uma VPN corporativa configurada para comunicação criptografada.",
+      "Segmentar apenas as redes internas do escritório em VLANs.",
+      "Instalar controle de entrada física na sala de servidores.",
+      "Manter somente um backup diário dos sistemas internos."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A VPN pode estabelecer um túnel protegido entre o dispositivo remoto e a rede corporativa.",
+      "Segmentação interna não protege, por si só, o canal que atravessa a internet a partir da casa do funcionário.",
+      "Controle físico é importante, mas não protege diretamente a comunicação remota.",
+      "Backup apoia recuperação e não a proteção do canal de conexão."
+    ],
+    "lesson": "Conexões remotas exigem proteção do canal e controles de acesso apropriados; VPN não dispensa autenticação."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Um colaborador muda de função e deixa de precisar de acesso aos relatórios financeiros.\nQual ação está mais alinhada ao princípio do menor privilégio?",
+    "options": [
+      "Remover as permissões que deixaram de ser necessárias à nova função.",
+      "Manter todos os acessos antigos para evitar solicitações futuras.",
+      "Conceder acesso administrativo a todos os sistemas.",
+      "Compartilhar as credenciais de um colega da área financeira."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. O acesso deve corresponder às necessidades atuais de trabalho.",
+      "Conveniência futura não justifica privilégios sem necessidade atual.",
+      "Permissões administrativas indiscriminadas contrariam o menor privilégio.",
+      "Compartilhamento de credenciais prejudica controle e responsabilização."
+    ],
+    "lesson": "Privilégios devem ser concedidos conforme a necessidade e revistos quando funções e responsabilidades mudam."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Uma organização quer que um serviço continue operando se um de seus servidores falhar.\nQual medida atende mais diretamente a esse objetivo?",
+    "options": [
+      "Implementar redundância com mecanismo de transferência para outro servidor.",
+      "Criptografar o disco do único servidor em uso.",
+      "Aumentar a complexidade das senhas dos operadores.",
+      "Classificar os documentos processados como confidenciais."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A redundância permite que outro recurso assuma a operação após uma falha.",
+      "Criptografia protege conteúdo contra leitura indevida, mas não mantém o servidor em operação quando ele falha.",
+      "Senhas protegem o acesso, não fornecem capacidade alternativa de processamento.",
+      "Classificação orienta a proteção, mas não oferece capacidade técnica para substituir o servidor."
+    ],
+    "lesson": "Redundância é um controle de disponibilidade que deve ser planejado conforme os requisitos de continuidade."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Uma pessoa descobre que a chave privada usada por um serviço para autenticação foi copiada por um terceiro.\nQual ação é mais apropriada?",
+    "options": [
+      "Tratar o comprometimento, substituir o par de chaves e revogar o certificado associado, quando aplicável.",
+      "Continuar usando a chave, pois somente chaves públicas precisam ficar em segredo.",
+      "Publicar a chave privada para equilibrar o acesso de todos.",
+      "Alterar apenas o nome do serviço, mantendo a mesma chave privada."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A chave privada comprometida não deve continuar sendo confiável para provar a identidade do serviço.",
+      "A chave pública pode ser distribuída; a privada é que precisa ser protegida.",
+      "Divulgar a chave amplia o comprometimento.",
+      "Mudar o nome não impede que a chave copiada continue sendo utilizada indevidamente."
+    ],
+    "lesson": "Em criptografia assimétrica, a chave privada precisa permanecer secreta. Comprometimento exige resposta e substituição adequada."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Qual é uma função central de uma infraestrutura de chave pública (ICP/PKI)?",
+    "options": [
+      "Apoiar a associação verificável entre uma identidade e uma chave pública por meio de certificados.",
+      "Realizar automaticamente todas as cópias de segurança da organização.",
+      "Garantir que toda compra em qualquer site será entregue.",
+      "Tornar desnecessária a proteção das chaves privadas."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Certificados e processos de confiança apoiam a verificação da ligação entre identidade e chave pública.",
+      "Backup não é a função central de uma ICP.",
+      "Um certificado não garante a honestidade comercial nem a entrega de produtos.",
+      "Chaves privadas continuam exigindo proteção adequada."
+    ],
+    "lesson": "Um certificado ajuda a vincular uma chave pública a uma identidade; não é uma garantia universal de segurança."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Um programa oferecido como ferramenta de produtividade executa a função anunciada, mas também instala silenciosamente acesso remoto para um invasor.\nQual tipo de malware melhor descreve esse comportamento?",
+    "options": [
+      "Cavalo de Troia (trojan).",
+      "Worm.",
+      "Spyware, caracterizado exclusivamente pela coleta de informações do usuário.",
+      "Bomba lógica, caracterizada pelo disparo em uma data específica."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. O programa aparentemente legítimo esconde uma função maliciosa.",
+      "O cenário não descreve autorreplicação ou propagação automática, características associadas a worms.",
+      "O cenário destaca a aparência legítima e a função oculta de acesso, e não a coleta de informações que caracterizaria spyware.",
+      "O enunciado não descreve execução condicionada a uma data ou evento específico."
+    ],
+    "lesson": "Trojans ocultam ações maliciosas sob uma aparência legítima; worms se destacam pela autorreplicação e propagação."
+  },
+  {
+    "topic": "Segurança tecnológica",
+    "text": "Um código malicioso explora falhas em computadores conectados e se propaga automaticamente para outros dispositivos, sem que o usuário abra um programa a cada infecção.\nQual tipo de malware é mais característico desse cenário?",
+    "options": [
+      "Worm.",
+      "Cavalo de Troia (trojan).",
+      "Spyware.",
+      "Bomba lógica."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Autorreplicação e propagação entre sistemas são características de worms.",
+      "O trojan se destaca por uma aparência legítima que esconde uma função maliciosa, não por autorreplicação.",
+      "Spyware se destaca pela coleta indevida de informações sobre usuários ou suas atividades.",
+      "Uma bomba lógica é acionada por uma condição específica; isso não caracteriza a propagação descrita."
+    ],
+    "lesson": "Observe o comportamento descrito: propagação autônoma sugere worm; aparência legítima com ação oculta sugere trojan."
+  },
+  {
+    "topic": "Normas e conformidade",
+    "text": "Qual norma apresenta requisitos para estabelecer, implementar, manter e melhorar um sistema de gestão de segurança da informação (SGSI)?",
+    "options": [
+      "ISO/IEC 27001.",
+      "ISO/IEC 27002.",
+      "ISO/IEC 27005.",
+      "ISO/IEC 27000."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A ISO/IEC 27001 é a referência de requisitos do SGSI.",
+      "A ISO/IEC 27002 fornece controles e orientações, não é a norma de requisitos de certificação do SGSI.",
+      "A ISO/IEC 27005 trata da gestão de riscos de segurança da informação.",
+      "A ISO/IEC 27000 apresenta visão geral e vocabulário da família de normas."
+    ],
+    "lesson": "Associe ISO/IEC 27001 a requisitos do SGSI; ISO/IEC 27002 a controles; ISO/IEC 27005 a gestão de riscos."
+  },
+  {
+    "topic": "Normas e conformidade",
+    "text": "Uma equipe já definiu seu SGSI e busca orientações sobre controles de segurança e sua implementação.\nQual referência da família ISO/IEC 27000 é a mais diretamente adequada?",
+    "options": [
+      "ISO/IEC 27002.",
+      "ISO/IEC 27001.",
+      "ISO/IEC 27005.",
+      "ISO/IEC 27000."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. A ISO/IEC 27002 descreve controles de segurança da informação e orientações relacionadas.",
+      "A ISO/IEC 27001 contém requisitos do SGSI; a referência mais direta para orientações sobre controles é a ISO/IEC 27002.",
+      "A ISO/IEC 27005 concentra-se na gestão de riscos, não nas orientações gerais de implementação de controles.",
+      "A ISO/IEC 27000 apresenta visão geral e vocabulário, não o detalhamento de controles solicitado."
+    ],
+    "lesson": "As normas se complementam: os requisitos de gestão e as orientações sobre controles têm finalidades distintas."
+  },
+  {
+    "topic": "Normas e conformidade",
+    "text": "Por que uma organização deve auditar periodicamente seu SGSI?",
+    "options": [
+      "Para avaliar sua conformidade e eficácia e identificar fragilidades e oportunidades de melhoria.",
+      "Para garantir que nunca mais ocorrerá um incidente de segurança.",
+      "Para substituir a gestão de riscos por uma visita anual do auditor.",
+      "Para provar que todos os controles podem ser removidos após a auditoria."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Auditorias fornecem evidências sobre atendimento aos requisitos e funcionamento do sistema de gestão.",
+      "Nenhuma auditoria pode garantir ausência de incidentes futuros.",
+      "Gestão de riscos é uma atividade contínua, não substituída pela auditoria.",
+      "O resultado da auditoria não elimina a necessidade dos controles."
+    ],
+    "lesson": "Auditoria avalia evidências de conformidade e eficácia e ajuda a orientar correções e melhoria contínua."
+  },
+  {
+    "topic": "Normas e conformidade",
+    "text": "Uma empresa definiu requisitos de proteção de dados aplicáveis à sua atividade.\nQual ação integra melhor esses requisitos à segurança da informação?",
+    "options": [
+      "Traduzir os requisitos em políticas, procedimentos e controles, atribuir responsabilidades e acompanhar seu cumprimento.",
+      "Pressupor que a compra de um antivírus atende automaticamente a todos os requisitos.",
+      "Ignorar os requisitos quando o tratamento dos dados for terceirizado.",
+      "Considerar que uma certificação, sozinha, elimina todas as obrigações aplicáveis."
+    ],
+    "correct": 0,
+    "why": [
+      "Correta. Requisitos precisam ser incorporados às práticas da organização e verificados.",
+      "Antivírus é um controle específico e não cobre todas as obrigações de proteção de dados.",
+      "Terceirização não permite simplesmente desconsiderar os requisitos aplicáveis.",
+      "Certificação não é uma dispensa geral de obrigações legais, regulatórias ou contratuais."
+    ],
+    "lesson": "Conformidade exige conhecer os requisitos aplicáveis e demonstrar seu atendimento por práticas e evidências."
+  }
+]</script>
+<script>
+'use strict';
+const QUESTIONS=JSON.parse(document.getElementById('question-data').textContent);
+const DURATION=60*60*1000, PASS=26, KEY='isfs-simulado-v1';
+const app=document.getElementById('app'), dialog=document.getElementById('confirmDialog');
+const letters='ABCD';
+let state=null, reviewFilter='all', timerHandle=null, warned=false, storageOK=true, pendingAction=null;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(!s)return null;if(s.version!==1||!['running','finished'].includes(s.status)||!Number.isFinite(s.startedAt)||!Number.isFinite(s.deadline)||s.deadline-s.startedAt!==DURATION||!Number.isInteger(s.current)||s.current<0||s.current>=QUESTIONS.length||!Array.isArray(s.answers)||s.answers.length!==QUESTIONS.length||!s.answers.every(a=>a===null||Number.isInteger(a)&&a>=0&&a<4)||!Array.isArray(s.flags)||s.flags.length!==QUESTIONS.length||!s.flags.every(f=>typeof f==='boolean')||!Array.isArray(s.order)||s.order.length!==QUESTIONS.length||!s.order.every(o=>Array.isArray(o)&&o.length===4&&[...o].sort().join('')==='0123')||(s.status==='finished'&&(!Number.isFinite(s.finishedAt)||s.finishedAt<s.startedAt)))return null;return s}catch{storageOK=false;return null}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch{storageOK=false}updateStorageNote()}
+function updateStorageNote(){const n=document.getElementById('saveNote');if(n)n.textContent=storageOK?'Progresso salvo neste navegador.':'Salvamento indisponível. Mantenha esta aba aberta.'}
+function answered(){return state.answers.filter(a=>a!==null).length}
+function remaining(){return Math.max(0,state.deadline-Date.now())}
+function clock(ms){const n=Math.ceil(Math.max(0,ms)/1000);return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')}
+function shuffle(){const a=[0,1,2,3];for(let i=3;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function announce(message){document.getElementById('announcer').textContent=message}
+function showHome(){clearInterval(timerHandle);app.innerHTML=`<section class="intro"><div><div class="eyebrow">PREPARAÇÃO PARA EXIN · ISFS</div><h1>Seu próximo passo<br>em <span class="accent">segurança<br>da informação.</span></h1><p class="lead">Teste seus conhecimentos em um simulado completo. Uma hora para praticar, uma revisão para evoluir.</p><span class="pill">ISO/IEC 27001 · Nível Foundation</span></div><section class="card exam-card" aria-labelledby="start-title"><div class="eyebrow">ANTES DE COMEÇAR</div><h2 id="start-title">Prepare o seu ambiente.</h2><p style="font-size:14px">Escolha um lugar tranquilo e reserve uma hora sem interrupções.</p><div class="stat-row"><span>Questões</span><b>40 de múltipla escolha</b></div><div class="stat-row"><span>Duração</span><b>60 minutos, sem pausa</b></div><div class="stat-row"><span>Aprovação</span><b>26 acertos · 65%</b></div><div class="stat-row"><span>Pontuação</span><b>1 ponto por acerto</b></div><button class="btn block" data-action="start">Iniciar simulado <span aria-hidden="true">→</span></button><p class="micro">O relógio começa ao iniciar e continua mesmo se você fechar a página. Ao zerar, a prova é finalizada automaticamente. Questões em branco valem zero; erros não descontam pontos.</p>${!storageOK?'<p class="notice">O navegador não permite salvar o progresso. Mantenha esta aba aberta durante a prova.</p>':''}</section></section><section class="feature-row"><div class="feature"><span>01 / RESPONDA</span><h3>No ritmo da prova</h3><p>Uma questão por vez, com liberdade para voltar e alterar sua resposta.</p></div><div class="feature"><span>02 / ORGANIZE</span><h3>Marque para revisar</h3><p>Use o mapa de questões para encontrar respostas pendentes antes de concluir.</p></div><div class="feature"><span>03 / APRENDA</span><h3>Entenda cada alternativa</h3><p>Veja sua nota, o desempenho por tema e a explicação de cada opção no final.</p></div></section>`}
+function start(){const now=Date.now();state={version:1,status:'running',startedAt:now,deadline:now+DURATION,answers:QUESTIONS.map(()=>null),flags:QUESTIONS.map(()=>false),order:QUESTIONS.map(shuffle),current:0};warned=false;save();renderExam();clearInterval(timerHandle);timerHandle=setInterval(tick,250);tick()}
+function guard(){if(!state||state.status!=='running')return false;if(remaining()<=0){finish(true);return false}return true}
+function renderExam(focus=false){const i=state.current,q=QUESTIONS[i],count=answered();app.innerHTML=`<div class="exam-heading"><div><h1>Simulado em andamento</h1><p>Concentre-se. Você pode revisar antes de finalizar.</p></div><div class="timer" id="timer" role="timer" aria-label="Tempo restante"><small>TEMPO RESTANTE</small><strong id="time">${clock(remaining())}</strong></div></div><div class="exam-layout"><section class="card question-card"><div class="q-meta"><div class="eyebrow">QUESTÃO ${String(i+1).padStart(2,'0')} / 40 · ${esc(q.topic)}</div><button class="text-btn ${state.flags[i]?'flagged':''}" data-action="flag" aria-pressed="${state.flags[i]}">${state.flags[i]?'⚑ Marcada para revisar':'⚐ Marcar para revisar'}</button></div><h2 id="questionTitle" tabindex="-1">${esc(q.text)}</h2><div class="choices" role="radiogroup" aria-labelledby="questionTitle">${state.order[i].map((original,pos)=>`<label class="choice ${state.answers[i]===original?'selected':''}"><input type="radio" name="answer" value="${original}" ${state.answers[i]===original?'checked':''}><span class="letter" aria-hidden="true">${letters[pos]}</span><span class="choice-text">${esc(q.options[original])}</span></label>`).join('')}</div><div class="q-nav"><button class="btn secondary" data-action="previous" ${i===0?'disabled':''}>← Anterior</button>${i<39?'<button class="btn" data-action="next">Próxima →</button>':'<button class="btn" data-action="finish">Finalizar prova</button>'}</div></section><aside class="card sidebar" aria-label="Navegação da prova"><h3>Seu progresso</h3><p id="answerCount">${count} de 40 respondidas</p><div class="progress" role="progressbar" aria-label="Questões respondidas" aria-valuemin="0" aria-valuemax="40" aria-valuenow="${count}"><div id="progressFill" style="width:${count/40*100}%"></div></div><nav class="question-grid" aria-label="Ir para questão">${QUESTIONS.map((_,j)=>`<button class="q-dot ${state.answers[j]!==null?'answered':''} ${j===i?'active':''} ${state.flags[j]?'flag':''}" data-action="jump" data-index="${j}" ${j===i?'aria-current="step"':''} aria-label="Questão ${j+1}, ${state.answers[j]!==null?'respondida':'em branco'}${state.flags[j]?', marcada para revisão':''}">${j+1}</button>`).join('')}</nav><div class="legend"><span><i></i>Respondida</span><span><i class="blank"></i>Em branco</span><span><i class="flag"></i>Revisar</span></div><button class="btn secondary block" data-action="finish">Finalizar simulado</button><p class="save-note" id="saveNote"></p></aside></div>`;updateStorageNote();tick();if(focus){document.getElementById('questionTitle')?.focus();window.scrollTo({top:0,behavior:'instant'})}}
+function tick(){if(!state||state.status!=='running')return;const left=remaining();if(left<=0){finish(true);return}const el=document.getElementById('time');if(el)el.textContent=clock(left);document.getElementById('timer')?.classList.toggle('warning',left<=300000);if(left<=300000&&!warned){warned=true;announce('Atenção: faltam menos de cinco minutos para terminar.')}}
+function finish(auto=false){if(!state||state.status!=='running')return;state.status='finished';state.finishedAt=auto?state.deadline:Math.min(Date.now(),state.deadline);state.expired=auto||Date.now()>=state.deadline;clearInterval(timerHandle);dialog.close();pendingAction=null;save();reviewFilter='all';renderResult();announce(state.expired?'Tempo esgotado. Confira o resultado.':'Prova finalizada. Confira o resultado.');window.scrollTo({top:0,behavior:'instant'})}
+function score(){return state.answers.reduce((sum,a,i)=>sum+(a===QUESTIONS[i].correct?1:0),0)}
+function renderResult(){const points=score(),passed=points>=PASS,blank=40-answered(),wrong=answered()-points,percent=points/40*100;const topics=[...new Set(QUESTIONS.map(q=>q.topic))];app.innerHTML=`${state.expired?'<div class="notice" style="margin-top:25px" role="status">O tempo de 60 minutos terminou. O simulado foi finalizado automaticamente com as respostas registradas.</div>':''}<section class="card result-hero ${passed?'':'failed'}"><div><span class="pill">SIMULADO CONCLUÍDO</span><h1>${passed?'Você atingiu a nota de aprovação.':'Ainda falta um pouco. Continue praticando.'}</h1><p>${passed?`Com <b>${points} acertos</b>, você teria passado pelo critério do anexo: pelo menos 26 de 40 pontos.`:`Você fez <b>${points} pontos</b>. ${PASS-points===1?'Faltou':'Faltaram'} <b>${PASS-points} ${PASS-points===1?'acerto':'acertos'}</b> para atingir os 26 pontos exigidos no anexo.`} A revisão abaixo mostra onde concentrar seus estudos.</p><p class="micro">Este desempenho no simulado não garante o resultado no exame oficial.</p></div><div class="score-circle" style="--pct:${percent}%"><div class="score-inner"><b>${percent.toLocaleString('pt-BR')}%</b><small>${points} de 40 pontos</small></div></div></section><div class="result-stats"><div class="card result-stat"><span>Acertos</span><strong style="color:var(--teal)">${points} <small>/ 40</small></strong></div><div class="card result-stat"><span>Respostas erradas</span><strong>${wrong}</strong></div><div class="card result-stat"><span>Em branco</span><strong>${blank}</strong></div><div class="card result-stat"><span>Tempo utilizado</span><strong>${clock(state.finishedAt-state.startedAt)}</strong></div></div><section class="card topic-card"><h3>Seu desempenho por tema</h3><p class="micro" style="margin:0 0 22px">Use os temas com menos acertos para orientar a próxima revisão.</p><div class="topic-grid">${topics.map(t=>{const ids=QUESTIONS.map((q,i)=>q.topic===t?i:-1).filter(i=>i>=0),n=ids.filter(i=>state.answers[i]===QUESTIONS[i].correct).length;return `<div class="topic"><div class="topic-label"><span>${esc(t)}</span><b>${n}/${ids.length}</b></div><div class="progress"><div style="width:${100*n/ids.length}%"></div></div></div>`}).join('')}</div></section><div class="review-head"><h2>Revisão comentada</h2><div class="filters" aria-label="Filtrar revisão">${[['all','Todas (40)'],['wrong',`Erradas (${wrong})`],['blank',`Em branco (${blank})`],['correct',`Corretas (${points})`]].map(([f,label])=>`<button class="filter ${reviewFilter===f?'on':''}" data-action="filter" data-filter="${f}" aria-pressed="${reviewFilter===f}">${label}</button>`).join('')}</div></div><div id="reviewList">${renderReviews()}</div><div class="result-actions"><button class="btn secondary" data-action="print">Imprimir resultado</button><button class="btn" data-action="restart">Refazer simulado ↗</button></div>`}
+function renderReviews(){const rows=QUESTIONS.map((q,i)=>{const a=state.answers[i],ok=a===q.correct,empty=a===null;if(reviewFilter==='wrong'&&(ok||empty)||reviewFilter==='blank'&&!empty||reviewFilter==='correct'&&!ok)return '';return `<article class="card review-card"><div class="review-status ${ok?'correct':''}">QUESTÃO ${String(i+1).padStart(2,'0')} · ${ok?'ACERTOU':empty?'EM BRANCO':'ERROU'} · ${esc(q.topic)}</div><h3>${esc(q.text)}</h3>${state.order[i].map((original,pos)=>`<div class="review-option ${original===q.correct?'good':original===a?'bad':''}"><b>${letters[pos]}.</b> ${esc(q.options[original])}${original===a?'<span class="option-tag">SUA RESPOSTA</span>':''}${original===q.correct?'<span class="option-tag">CORRETA</span>':''}<small>${esc(q.why[original])}</small></div>`).join('')}<div class="explanation"><b>O que levar para a prova</b>${esc(q.lesson)}${empty?'<br>Esta questão ficou sem resposta e recebeu zero ponto.':''}</div></article>`}).filter(Boolean);return rows.length?rows.join(''):'<div class="card"><p style="margin:0">Nenhuma questão neste filtro.</p></div>'}
+function ask(title,message,action){pendingAction=action;document.getElementById('dialogTitle').textContent=title;document.getElementById('dialogText').textContent=message;dialog.showModal();document.getElementById('cancelDialog').focus()}
+document.getElementById('cancelDialog').onclick=()=>{pendingAction=null;dialog.close()};dialog.addEventListener('cancel',()=>{pendingAction=null});document.getElementById('acceptDialog').onclick=()=>{const action=pendingAction;pendingAction=null;dialog.close();if(action)action()};
+app.addEventListener('change',e=>{if(!e.target.matches('input[name="answer"]')||!guard())return;state.answers[state.current]=Number(e.target.value);save();app.querySelectorAll('.choice').forEach(l=>l.classList.toggle('selected',l.querySelector('input').checked));const count=answered();document.getElementById('answerCount').textContent=`${count} de 40 respondidas`;document.getElementById('progressFill').style.width=`${count/40*100}%`;app.querySelector('[role="progressbar"]').setAttribute('aria-valuenow',count);const dot=app.querySelector(`[data-index="${state.current}"]`);dot.classList.add('answered');dot.setAttribute('aria-label',`Questão ${state.current+1}, respondida${state.flags[state.current]?', marcada para revisão':''}`)});
+app.addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;const action=b.dataset.action;if(action==='start'){start();return}if(action==='restart'){ask('Começar uma nova tentativa?','O resultado atual será substituído. As mesmas 40 questões serão reapresentadas com alternativas em nova ordem.',start);return}if(action==='filter'){reviewFilter=b.dataset.filter;app.querySelectorAll('.filter').forEach(f=>{const on=f.dataset.filter===reviewFilter;f.classList.toggle('on',on);f.setAttribute('aria-pressed',on)});document.getElementById('reviewList').innerHTML=renderReviews();return}if(action==='print'){if(reviewFilter!=='all'){reviewFilter='all';renderResult()}window.print();return}if(!guard())return;if(action==='finish'){const blank=40-answered(),flags=state.flags.filter(Boolean).length;ask('Finalizar e ver resultado?',`${answered()} de 40 questões respondidas.${blank?` Há ${blank} em branco, que valerão zero ponto.`:''}${flags?` Você marcou ${flags} para revisar.`:''} Após finalizar, suas respostas não poderão ser alteradas.`,()=>{if(guard())finish(false)});return}if(action==='flag'){state.flags[state.current]=!state.flags[state.current];save();renderExam();return}if(action==='previous')state.current=Math.max(0,state.current-1);if(action==='next')state.current=Math.min(39,state.current+1);if(action==='jump')state.current=Number(b.dataset.index);save();renderExam(true)});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()});window.addEventListener('focus',tick);
+window.addEventListener('storage',e=>{if(e.key!==KEY)return;state=load();clearInterval(timerHandle);if(!state){showHome();return}if(state.status==='finished'){renderResult();return}renderExam();if(state.status==='running')timerHandle=setInterval(tick,250)});
+state=load();if(state?.status==='finished')renderResult();else if(state?.status==='running'){renderExam();if(state.status==='running')timerHandle=setInterval(tick,250)}else showHome();
+</script>
+</body>
+</html>
